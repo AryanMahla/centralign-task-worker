@@ -1,0 +1,68 @@
+
+{% extends "base.html" %}
+
+{% block title %}New Invoice | CentrAlign{% endblock %}
+
+{% block content %}
+<div class="panel">
+    <h2>Enter an invoice</h2>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <form action="/entries/new" method="post">
+        <label for="company">Company name</label>
+        <input
+            id="company"
+            name="company"
+            type="text"
+            required
+            value="{{ values.get('company', '') }}"
+        >
+
+        <label for="invoice_no">Invoice number</label>
+        <input
+            id="invoice_no"
+            name="invoice_no"
+            type="text"
+            required
+            value="{{ values.get('invoice_no', '') }}"
+        >
+
+        <label for="amount">Amount</label>
+        <input
+            id="amount"
+            name="amount"
+            type="number"
+            min="0.01"
+            step="0.01"
+            required
+            value="{{ values.get('amount', '') }}"
+        >
+
+        <label for="currency">Currency</label>
+        <select id="currency" name="currency" required>
+            <option value="INR"
+                {% if values.get('currency', 'INR') == 'INR' %}selected{% endif %}>
+                INR
+            </option>
+            <option value="USD"
+                {% if values.get('currency') == 'USD' %}selected{% endif %}>
+                USD
+            </option>
+        </select>
+
+        <label for="due_date">Due date</label>
+        <input
+            id="due_date"
+            name="due_date"
+            type="date"
+            required
+            value="{{ values.get('due_date', '') }}"
+        >
+
+        <button type="submit">{{ submit_label }}</button>
+    </form>
+</div>
+{% endblock %}

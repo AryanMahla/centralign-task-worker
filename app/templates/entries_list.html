@@ -1,0 +1,55 @@
+
+{% extends "base.html" %}
+
+{% block title %}Invoice Entries | CentrAlign{% endblock %}
+
+{% block content %}
+<div class="panel">
+    <h2>Invoice entries</h2>
+
+    {% if message %}
+        <p class="success">{{ message }}</p>
+    {% endif %}
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <p>Stored invoices: {{ entries|length }}</p>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Company</th>
+                    <th>Invoice number</th>
+                    <th>Amount</th>
+                    <th>Currency</th>
+                    <th>Due date</th>
+                    <th>Created at</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in entries %}
+                <tr>
+                    <td>{{ entry.id }}</td>
+                    <td>{{ entry.company }}</td>
+                    <td>{{ entry.invoice_no }}</td>
+                    <td>{{ entry.amount }}</td>
+                    <td>{{ entry.currency }}</td>
+                    <td>{{ entry.due_date }}</td>
+                    <td>{{ entry.created_at }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="7">No invoices found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <p><a href="/entries/new">Add an invoice</a></p>
+</div>
+{% endblock %}
