@@ -1,8 +1,30 @@
-
-.venv/
+```gitignore
+# Python
 __pycache__/
 *.py[cod]
-.env
-*.db
-traces/
 .pytest_cache/
+
+# Virtual environments
+.venv/
+venv/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs and traces
+traces/
+*.log
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+```
